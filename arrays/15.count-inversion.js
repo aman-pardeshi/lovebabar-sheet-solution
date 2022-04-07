@@ -1,7 +1,7 @@
 const inversionCount = (arr, N) => {
   const mergeCount = (arr, l, m, r) => {
     let left = [];
-    for (let i = l; i < m; i++) {
+    for (let i = l; i < m + 1; i++) {
       left.push(arr[i]);
     }
 
@@ -39,16 +39,25 @@ const inversionCount = (arr, N) => {
     if (l < r) {
       let m = Math.floor((l + r) / 2);
       count += mergeSort(arr, l, m);
-      count += mergeSort(arr, r + 1, m);
+      count += mergeSort(arr, m + 1, r);
       count += mergeCount(arr, l, m, r);
     }
     return count;
   };
 
-  return mergeSort(arr, 0, arr.length - 1);
+  return mergeSort(arr, 0, N - 1);
 };
 
-console.log(inversionCount([2, 4, 1, 3, 5], 5));
-console.log(inversionCount([2, 3, 4, 5, 6], 5));
-console.log(inversionCount([10, 10, 10], 3));
-console.log(inversionCount([1, 20, 6, 4, 5], 5));
+// console.log(inversionCount([2, 4, 1, 3, 5], 5));
+// console.log(inversionCount([2, 3, 4, 5, 6], 5));
+// console.log(inversionCount([10, 10, 10], 3));
+console.log(
+  inversionCount(
+    [
+      468, 335, 1, 170, 225, 479, 359, 463, 465, 206, 146, 282, 328, 462, 492,
+      496, 443, 328, 437, 392, 105, 403, 154, 293, 383, 422, 217, 219, 396, 448,
+      227, 272, 39, 370, 413, 168, 300, 36, 395, 204, 312, 323,
+    ],
+    42
+  )
+);
